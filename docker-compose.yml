@@ -1,0 +1,55 @@
+front:
+    build: docker/front
+    volumes_from:
+        - data
+    volumes:
+        - ./docker/front/config/app.conf:/etc/nginx/conf.d/app.conf
+    links:
+        - app
+
+app:
+    build: docker/app
+    links:
+        - db
+    volumes_from:
+        - data
+    env_file:
+        - docker/settings/env
+        - docker/settings/env_access
+    environment:
+        - PHP_IDE_CONFIG=serverName=symfony
+
+data:
+    image: busybox
+    volumes:
+        - .:/var/www/html
+        - ./data/yarn/.cache:/var/www/.cache
+        - ./data/yarn/.config:/var/www/.config
+        - ./data/yarn/.yarnrc:/var/www/.yarnrc
+
+db:
+    image: mysql:5.7
+    volumes:
+        - ./data/mysql:/var/lib/mysql
+    env_file:
+        - docker/settings/mysql
+
+tools:
+    build: docker/tools
+    links:
+        - db
+    volumes:
+        - $SSH_AUTH_SOCK:/tmp/agent.sock
+        - ~/.gitconfig:/var/www/.gitconfig
+        - ~/.ssh/known_hosts:/var/www/.ssh/known_hosts
+        - ~/.composer:/var/www/.composer
+        - ./data/.bash_history:/var/www/.bash_history
+    environment:
+        - SSH_AUTH_SOCK=/tmp/agent.sock
+        - PHP_IDE_CONFIG=serverName=symfony
+    volumes_from:
+        - data
+    env_file:
+        - docker/settings/env
+        - docker/settings/env_access
+        - docker/settings/mysql
