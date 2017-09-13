@@ -1,3 +1,18 @@
 app:
     resource: '@AppBundle/Controller/'
-    type: annotation
+    type:      annotation
+
+articles:
+    type:     rest
+    prefix:   /api
+    resource: AppBundle\Controller\ArticleController
+
+users:
+    type:     rest
+    prefix:   /api
+    resource: AppBundle\Controller\UserController
+
+comments:
+    type:     rest
+    prefix:   /api
+    resource: AppBundle\Controller\CommentController
