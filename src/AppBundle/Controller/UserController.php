@@ -11,12 +11,17 @@ namespace AppBundle\Controller;
 use AppBundle\Form\Type\UserType;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use AppBundle\Entity\User;
+use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class UserController
+ * @package AppBundle\Controller
+ */
 class UserController extends Controller
 {
     /**

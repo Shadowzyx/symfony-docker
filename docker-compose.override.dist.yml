@@ -5,7 +5,3 @@ front:
 db:
     ports:
         - 3306:3306
-
-mailcatcher:
-    ports:
-        - 1080:1080

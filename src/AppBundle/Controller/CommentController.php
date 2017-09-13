@@ -14,12 +14,17 @@ use AppBundle\Entity\Comment;
 use AppBundle\Form\Type\ArticleType;
 use AppBundle\Form\Type\CommentType;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\View\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class CommentController
+ * @package AppBundle\Controller
+ */
 class CommentController extends Controller
 {
     /**
